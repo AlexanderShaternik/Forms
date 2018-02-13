@@ -1,38 +1,41 @@
 <div class="main">  
-    <form [formGroup]="mainGroup" novalidate (ngSubmit)="submit()">
-        <div formGroupName="firstGroup"  >
-            <label><p>First name:</p>
-                <input type="text"  formControlName="userFirstName" placeholder="Ivan"/> 
-            </label>         
-            <label><p>Last name:</p>
-                <input type="text"  formControlName="userLastName" placeholder="Ivanov"/> 
-            </label>
-            <label><p>Age:</p>
-                <input type="date"  formControlName="userAge"/> 
-            </label>
-        </div>
-        <div formGroupName="secondGroup"  >
-            <label><p>Adress:</p>
-                <input type="text"  formControlName="userAdress" placeholder="zip code" /> 
-            </label>         
-            <label><p>Enail:</p>
-                <input type="text"  formControlName="userEmail" placeholder="someone@example.com"/> 
-            </label>
-            <label><p>Phone:</p>
-                <input type="text"  formControlName="userPhones"   placeholder="+375"/> 
-            </label>
-        </div>
-        <div formGroupName="thirdGroup" >
-            <label for="male">  <p>Male</p>     
-                <input type="radio" name="gender" id="male"  value="male" formControlName="gender" />
-            </label>
-            <label for="female"><p>Female</p> 
-                <input type="radio" name="gender" id="female" value="female" formControlName="gender" />  
-            </label>
-            <label > <p>Text</p>
-             <textarea rows="7" cols="35" name="text" formControlName="text" ></textarea>  
-            </label>       
-        </div>
-         <button class="btn btn-main" [disabled]="mainGroup.invalid">MainGroup</button>
-    </form>    
+  <form [formGroup]="mainGroup"  >
+      <div  formGroupName="firstGroup" >
+          <label><p>First name:</p>
+              <input type="text"  formControlName="userFirstName" placeholder="Ivan"/> 
+          </label>         
+          <label><p>Last name:</p>
+              <input type="text"  formControlName="userLastName" placeholder="Ivanov"/> 
+          </label>
+          <label><p>Age:</p>
+              <input type="date"  formControlName="userAge"/> 
+          </label>
+          <button class="btn" [disabled]="firstGroup.invalid" (click)="submit(firstGroup)" >FirstGroup</button>
+      </div>
+      <div formGroupName="secondGroup"  >
+          <label><p>Adress:</p>
+              <input type="text"  formControlName="userAdress" placeholder="zip code" /> 
+          </label>         
+          <label><p>Enail:</p>
+              <input type="text"  formControlName="userEmail" placeholder="someone@example.com"/> 
+          </label>
+          <label><p>Phone:</p>
+              <input type="text"  formControlName="userPhones"   placeholder="+375"/> 
+          </label>
+          <button class="btn" [disabled]="secondGroup.invalid" (click)="submit(secondGroup)">SecondGroup</button>
+      </div>
+      <div formGroupName="thirdGroup" >
+          <label for="male">  <p>Male</p>     
+              <input type="radio" name="gender" id="male"  value="male" formControlName="gender" />
+          </label>
+          <label for="female"><p>Female</p> 
+              <input type="radio" name="gender" id="female" value="female" formControlName="gender" />  
+          </label>
+          <label > <p>Text</p>
+           <textarea rows="6" cols="35" name="text" formControlName="text" ></textarea>  
+          </label> 
+          <button class="btn" [disabled]="thirdGroup.invalid"  (click)="submit(thirdGroup)" >ThirdGroup</button>   
+      </div>
+       <button class="btn btn-main" (click)="submit(mainGroup)" [disabled]="mainGroup.invalid">MainGroup</button>
+  </form>    
 </div>  

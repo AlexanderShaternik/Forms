@@ -1,54 +1,56 @@
-import { Component,OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, Form, FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule, Form, FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
-    selector: 'app',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'] 
+  selector: 'app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
+export class AppComponent {
+  firstGroup  : FormGroup;
+  secondGroup : FormGroup;
+  thirdGroup  : FormGroup;
 
-export class AppComponent implements OnInit  { 
-    mainGroup   : FormGroup;
-    firstGroup  : FormGroup;
-    secondGroup : FormGroup;
-    thirdGroup  : FormGroup;
-    
-    constructor(private formBuilder: FormBuilder){
-    }
+  mainGroup = new FormGroup({
+  })
 
-    ngOnInit() {
-        this.mainGroup = this.formBuilder.group({
-            firstGroup : this.formBuilder.group({
-                "userFirstName": ["", [Validators.required]],
-                "userLastName": ["", [Validators.required,]],
-                "userAge": ["", [Validators.required,this.userAgeValidator]],
-            }),
-            secondGroup : this.formBuilder.group({
-                "userAdress": ["", [Validators.required,Validators.pattern('[0-9]{6}')]],
-                "userEmail": ["", [ Validators.required, Validators.pattern('[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}')]],
-                "userPhones": ["+375", [Validators.required,Validators.pattern('[\+][0-9]{12}')]]
+  ngOnInit() {
+    this.mainGroup.addControl('firstGroup',this.firstGroup = new FormGroup({
+      "userFirstName":new FormControl ("ivan", [Validators.required]),
+      "userLastName":new FormControl ("ivanov", [Validators.required]),
+      "userAge":new FormControl ("", [Validators.required,this.userAgeValidator])
+      })
+    ),
+    this.mainGroup.addControl('secondGroup',
+      this.secondGroup = new FormGroup({
+        "userAdress":new FormControl ("220022", [Validators.required,Validators.pattern('[0-9]{6}')]),
+        "userEmail":new FormControl ("a@gmail.com", [ Validators.required, Validators.pattern('[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}')]),
+        "userPhones":new FormControl ("+375447197924", [Validators.required,Validators.pattern('[\+][0-9]{12}')])
+      })
+    ),
+    this.mainGroup.addControl('thirdGroup',
+    this.thirdGroup = new FormGroup({
+        "gender":new FormControl ("", [Validators.required]),
+        "text" : new FormControl("111", [Validators.minLength(2), Validators.maxLength(140), Validators.required])
+      })
+    )
+  }
 
-            }),
-            thirdGroup : this.formBuilder.group({
-                "gender": ["", [Validators.required]],
-                "text" : ["", [Validators.minLength(2), Validators.maxLength(140), Validators.required]],
-            }),
-        })
-    }
-    userAgeValidator(control:FormControl){
-        let birthday = control.value.split('-');
-        if((((new Date).getFullYear() - birthday[0]) < 18)){
-            return {"userAge": true}
-            } else if((((new Date).getFullYear() - birthday[0]) == 18) && ((new Date).getMonth()+1 < birthday[1])){
-            return {"userAge": true}
-            } else if(((new Date).getMonth()+1 == birthday[1]) && ((new Date).getDate() < birthday[2] )){
-            return {"userAge": true}
-            }
-        return null
-    }
+  userAgeValidator(control:FormControl){
+    let birthday = control.value.split('-');
+    if((((new Date).getFullYear() - birthday[0]) < 18)){
+        return {"userAge": true}
+        } else if((((new Date).getFullYear() - birthday[0]) == 18) && ((new Date).getMonth()+1 < birthday[1])){
+        return {"userAge": true}
+        } else if(((new Date).getMonth()+1 == birthday[1]) && ((new Date).getDate() < birthday[2] )){
+        return {"userAge": true}
+        }
+    return null
+  }
 
-    submit(){
-        console.log(this.mainGroup.value)
-    }
+  submit(nameform:FormGroup){
+    console.log(nameform.value)
+  }
 }
