@@ -18,22 +18,22 @@ export class AppComponent {
 
   ngOnInit() {
     this.mainGroup.addControl('firstGroup',this.firstGroup = new FormGroup({
-      "userFirstName":new FormControl ("ivan", [Validators.required]),
-      "userLastName":new FormControl ("ivanov", [Validators.required]),
+      "userFirstName":new FormControl ("", [Validators.required]),
+      "userLastName":new FormControl ("", [Validators.required]),
       "userAge":new FormControl ("", [Validators.required,this.userAgeValidator])
       })
     ),
     this.mainGroup.addControl('secondGroup',
       this.secondGroup = new FormGroup({
-        "userAdress":new FormControl ("220022", [Validators.required,Validators.pattern('[0-9]{6}')]),
-        "userEmail":new FormControl ("a@gmail.com", [ Validators.required, Validators.pattern('[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}')]),
-        "userPhones":new FormControl ("+375447197924", [Validators.required,Validators.pattern('[\+][0-9]{12}')])
+        "userAdress":new FormControl ("", [Validators.required,Validators.pattern('[0-9]{6}')]),
+        "userEmail":new FormControl ("", [ Validators.required, Validators.pattern('[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}')]),
+        "userPhones":new FormControl ("+375", [Validators.required,Validators.pattern('[\+][0-9]{12}')])
       })
     ),
     this.mainGroup.addControl('thirdGroup',
     this.thirdGroup = new FormGroup({
         "gender":new FormControl ("", [Validators.required]),
-        "text" : new FormControl("111", [Validators.minLength(2), Validators.maxLength(140), Validators.required])
+        "text" : new FormControl("", [Validators.minLength(2), Validators.maxLength(140), Validators.required])
       })
     )
   }
