@@ -1,0 +1,63 @@
+.main{
+	max-width: 80%;
+	margin: 0 auto;
+}
+
+form,form div{
+	margin: 10px 15px;
+	border: 1px solid rgba(177, 173, 173, 0.7);
+	border-radius: 5px;
+	padding: 5px;
+	display: flex;
+	flex-flow: column;
+}
+
+label{
+	display:flex;
+	flex-flow: row;
+	margin-bottom: 5px;
+}
+input{
+	display:flex;
+	flex: 3 1;
+	border: 1px solid rgba(177, 173, 173, 0.7);
+	border-radius: 3px;
+}
+input[type="radio"]{
+	align-self: flex-start;
+}
+
+input.ng-touched.ng-invalid {border:solid red 2px;}
+input.ng-touched.ng-valid {border:solid green 2px;}
+
+p{
+	display:flex;
+	flex: 1 1;
+	margin:5px;
+}
+
+.btn {
+	display: flex;
+	align-self: flex-end;
+	justify-content:center;
+	flex: 2 1;
+	height: 30px;
+	width: 100px;
+	border-radius: 3px;
+    background-color: #00cbd9;
+    border: 1px solid #00cbd9;
+	cursor: pointer;
+} 
+
+.btn-main{
+	margin-right: 20px;
+}
+
+.btn:hover { 
+	background: #019da8;
+}
+
+.btn:active {
+	background:  #019da8;
+}
+
