@@ -17,7 +17,8 @@ export class AppComponent {
   })
 
   ngOnInit() {
-    this.mainGroup.addControl('firstGroup',this.firstGroup = new FormGroup({
+    this.mainGroup.addControl('firstGroup',
+    this.firstGroup = new FormGroup({
       "userFirstName":new FormControl ("", [Validators.required]),
       "userLastName":new FormControl ("", [Validators.required]),
       "userAge":new FormControl ("", [Validators.required,this.userAgeValidator])
